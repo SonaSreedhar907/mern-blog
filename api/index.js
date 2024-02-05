@@ -2,11 +2,13 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes.js'
+import cookie from 'cookie-parser'
 
 dotenv.config();
 
 const app = express();
 app.use(express.json())
+app.use(cookie())
 
 const connect = async () => {
     try {
