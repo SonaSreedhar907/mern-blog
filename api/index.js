@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
+import postRoutes from './routes/post.routes.js'
 import cookie from 'cookie-parser'
 
 dotenv.config();
@@ -22,6 +23,7 @@ const connect = async () => {
 
 app.use('/api/auth',authRoutes)
 app.use('/api/user',userRoutes)
+app.use('/api/post',postRoutes)
 
 app.listen(5005, () => {
     connect();
