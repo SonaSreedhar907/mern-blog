@@ -4,39 +4,39 @@ import { Link,useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
 
 function SignUp() {
-  const [formData,setFormData] =useState({})
-  const [errorMessage,setErrorMessage]=useState(null)
+  const [formData,setFormData] = useState({})
+  const [errorMessage,setErrorMessage] = useState(null)
   const [loading,setLoading] = useState(false)
   const navigate = useNavigate()
   const handleChange=(e)=>{
     setFormData({...formData,[e.target.id]:e.target.value.trim()})
   }
   const handleSubmit=async(e)=>{
-     e.preventDefault()
-     if(!formData.username || !formData.password || !formData.email){
-      return setErrorMessage('Please fill out all fields.')
-     }
-     try {
+    e.preventDefault()
+    if(!formData.username || !formData.password || !formData.email){
+      return setErrorMessage('Please fill out all fields')
+    }
+    try{
       setLoading(true)
       setErrorMessage(null)
-        const res=await fetch('/api/auth/signup',{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(formData)
-        })
-        const data = await res.json()
-        console.log('data is :',data)   //the output is 'signup successful' it comes from backend
-        if(data.success === false){
-          return setErrorMessage(data.message)
-        }
-        setLoading(false)
-        if(res.ok){
-          navigate('/sign-in')
-        }
-     } catch (error) {
-        setErrorMessage(error.message)
-        setLoading(false)
-     }
+      const res = await fetch('/api/auth/signup',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(formData)
+      })
+      const data=await res.json()
+      console.log('data is ',data)
+      if(data.success === false){
+        return setErrorMessage(data.message)
+      }
+      setLoading(false)
+      if(res.ok){
+        navigate('/sign-in')
+      }
+    }catch(error){
+      setErrorMessage(error.message)
+      setLoading(false)
+    }
   }
   return (
     <div className='min-h-screen mt-20'>
