@@ -77,6 +77,7 @@ export default function DashPosts() {
               <Table.HeadCell>Date Created</Table.HeadCell>
               <Table.HeadCell>User image</Table.HeadCell>
               <Table.HeadCell>Username</Table.HeadCell>
+              <Table.HeadCell>Email</Table.HeadCell>
               <Table.HeadCell>Admin</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
             </Table.Head>
@@ -98,6 +99,11 @@ export default function DashPosts() {
                   <Table.Cell>
                     <Link className="font-medium text-gray-900 dark:text-white">
                       {user.username}
+                    </Link>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Link className="font-medium text-gray-900 dark:text-white">
+                      {user.email}
                     </Link>
                   </Table.Cell>
                   <Table.Cell>

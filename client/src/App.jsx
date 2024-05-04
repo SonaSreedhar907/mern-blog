@@ -13,6 +13,7 @@ import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute'
 import CreatePost from './pages/CreatePost'
 import UpdatePost from './pages/UpdatePost'
 import DashUsers from './components/DashUsers'
+import PostPage from './pages/PostPage'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/users' element={<DashUsers/>}/>
           </Route>
           <Route path='/projects' element={<Projects/>}/>
+          <Route path='post/:postSlug' element={<PostPage/>}/>
           <Route path='/sign-in' element={<SignIn/>}/>
           <Route path='/sign-up' element={<SignUp/>}/>
        </Routes>
