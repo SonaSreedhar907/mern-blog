@@ -9,7 +9,7 @@ function CommentSection({ postId }) {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [commentError, setCommentError] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (comment.length > 200) {
@@ -32,7 +32,7 @@ function CommentSection({ postId }) {
       if (res.ok) {
         setComment("");
         setCommentError(null);
-        setComments([data,...comments])
+        setComments([data, ...comments]);
       }
     } catch (error) {
       setCommentError(error.message);
@@ -54,15 +54,15 @@ function CommentSection({ postId }) {
     getComments();
   }, [postId]);
 
-  const handleLike = async (commentId)=>{
+  const handleLike = async (commentId) => {
     try {
-      if(!currentUser){
-        navigate('/sign-in')
-        return
+      if (!currentUser) {
+        navigate("/sign-in");
+        return;
       }
-      const res = await fetch(`/api/comment/likeComment/${commentId}`,{
-        method : 'PUT'
-      })
+      const res = await fetch(`/api/comment/likeComment/${commentId}`, {
+        method: "PUT",
+      });
       if (res.ok) {
         const data = await res.json();
         setComments(
@@ -78,10 +78,18 @@ function CommentSection({ postId }) {
         );
       }
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
+  };
+  
+  const handleEdit = async(comment,editedContent)=>{
+      setComments(
+        comments.map((c)=>
+           c._id === comment._id ?{...c,content:editedContent} :c 
+        )
+      )
   }
-  console.log("comments are ", comments);
+
   return (
     <div className="max-w-2xl mx-auto w-full p-3">
       {currentUser ? (
@@ -132,30 +140,22 @@ function CommentSection({ postId }) {
           )}
         </form>
       )}
-      
-{comments.length === 0 ? (
-    <p className="text-sm my-5">No comments yet!</p>
-):(
-    <>
-          <div className="text-sm my-5 flex items-center gap-1">
-        <p>Comments</p>
-        <div className="border border-gray-400 py-1 px-2 rounded-sm">
-            <p>{comments.length}</p>
-        </div>    
-    </div>
-    {
-      comments.map(comment=>(
-       <Comment
-         key={comment._id}
-         comment={comment}
-         onLike={handleLike}
-       />
-      ))
-    }
-    </>
-)}
-    
 
+      {comments.length === 0 ? (
+        <p className="text-sm my-5">No comments yet!</p>
+      ) : (
+        <>
+          <div className="text-sm my-5 flex items-center gap-1">
+            <p>Comments</p>
+            <div className="border border-gray-400 py-1 px-2 rounded-sm">
+              <p>{comments.length}</p>
+            </div>
+          </div>
+          {comments.map((comment) => (
+            <Comment key={comment._id} comment={comment} onLike={handleLike} onEdit={handleEdit} />
+          ))}
+        </>
+      )}
     </div>
   );
 }
