@@ -15,6 +15,7 @@ import UpdatePost from './pages/UpdatePost'
 import DashUsers from './components/DashUsers'
 import PostPage from './pages/PostPage'
 import ScrollToTop from './components/ScrollToTop'
+import DashComments from './components/DashComments'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='/create-post' element={<CreatePost/>}/>   
           <Route path='/update-post/:postId' element={<UpdatePost/>}/>     
           <Route path='/users' element={<DashUsers/>}/>
+          <Route path='/comments' element={<DashComments/>}/>
           </Route>
           <Route path='/projects' element={<Projects/>}/>
           <Route path='post/:postSlug' element={<PostPage/>}/>
