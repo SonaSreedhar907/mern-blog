@@ -16,6 +16,7 @@ import DashUsers from './components/DashUsers'
 import PostPage from './pages/PostPage'
 import ScrollToTop from './components/ScrollToTop'
 import DashComments from './components/DashComments'
+import DashboardComp from './components/DashboardComp'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/>}/>
           </Route>
           <Route element={<OnlyAdminPrivateRoute/>}>
+          <Route path='/dash' element={<DashboardComp/>}/>
           <Route path='/create-post' element={<CreatePost/>}/>   
           <Route path='/update-post/:postId' element={<UpdatePost/>}/>     
           <Route path='/users' element={<DashUsers/>}/>
