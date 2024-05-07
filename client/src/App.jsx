@@ -17,6 +17,7 @@ import PostPage from './pages/PostPage'
 import ScrollToTop from './components/ScrollToTop'
 import DashComments from './components/DashComments'
 import DashboardComp from './components/DashboardComp'
+import Search from './pages/Search'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/about' element={<About/>}/>
           <Route element={<PrivateRoute/>}>
           <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/search' element={<Search/>}/>
           </Route>
           <Route element={<OnlyAdminPrivateRoute/>}>
           <Route path='/dash' element={<DashboardComp/>}/>
