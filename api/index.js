@@ -7,23 +7,13 @@ import userRoutes from './routes/user.routes.js';
 import postRoutes from './routes/post.routes.js';
 import commentRoutes from './routes/comment.routes.js';
 import cookieParser from 'cookie-parser'; 
-import path from 'path'
 
 dotenv.config();
-
-const __dirname = path.resolve()
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser()); // Use cookie-parser middleware
 app.use(cors()); // Enable CORS
-
-app.use(express.static(path.join(__dirname,'/client/dist')))
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-  });
-
 
 const connect = async () => {
     try {
